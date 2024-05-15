@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;1,500&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'EB Garamond', 'Playfair Display', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+        
+        header nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'EB Garamond', serif;
+            padding: 5px 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        header nav ul li a:hover {
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+        }
+        
+        .products {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .products .row {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .product {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 20px;
+            padding: 20px;
+            width: 30%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product h3 {
+            margin: 10px 0;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .product p {
+            color: #666;
+            font-family: 'EB Garamond', serif;
+        }
+        
+        .product .price {
+            font-size: 1.2em;
+            color: #333;
+            font-family: 'EB Garamond', serif;
+        }
+        
+        .product button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'EB Garamond', serif;
+            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 5px;
+        }
+        
+        .product button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+        
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            font-family: 'EB Garamond', serif;
+        }
+        
+        body {
+            min-height: 400px;
+            margin-bottom: 100px;
+            clear: both;
+        }
+        
+        .image-hover {
+            width: 300px;
+            height: 200px;
+            background-image: url('default-image.jpg');
+            background-size: cover;
+            transition: background-image 0.5s ease-in-out;
+        }
+        
+        .image-hover:hover {
+            background-image: url('hover-image.jpg');
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            animation: fadeIn 0.5s;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 10px;
+            animation: slideIn 0.5s;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); }
+            to { transform: translateY(0); }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .carousel img {
+            width: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            top: -50px;
+        }
+
+        .carousel-button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-button:hover {
+            background-color: #555;
+        }
+
+        .product-size {
+            margin: 10px 0;
+        }
+
+        .product-size select {
+            padding: 5px;
+            font-family: 'EB Garamond', serif;
+        }
+
+        .cart {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'EB Garamond', serif;
+            transition: transform 0.3s ease;
+        }
+
+        .cart.hidden {
+            transform: translateY(-100%);
+        }
+
+        .cart ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart ul li {
+            margin: 10px 0;
+        }
+
+        .cart-toggle {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-family: 'EB Garamond', serif;
+            position: fixed;
+            top: 0;
+            right: 0;
+            border-radius: 0 0 0 5px;
+        }
+        
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skywhywalker cloth store</title>
+</head>
+<body>
+    <header>
+        <img src="D:\user_files\projecta\HTML PROJECTA\skywhywealkershop\image.png" width="550" height="200" alt="Skywhywalker Cloth Store">
+        <nav>
+            <ul>
+                <li><a href="skyaboutmain.html">головна</a></li>
+                <li><a href="index.html">товари</a></li>
+                <li><a href="skycontact.html">контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <br><br>
+<center>
+<main>
+<h1>Наші контакти</h1>
+<a href="https://www.instagram.com/skyywalked/">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/800px-Instagram_icon.png" width="60" height="60">
+<h3>Instagram</h3>
+</a>
+
+
+
+
+
+
+</center>
+<footer>
+    <p>&copy; 2024 skywhywalker cloth store. all rights reserved.</p>
+</footer>
+    
+
+    <script>
+        let cart = [];
+
+        function openModal(modalId) {
+            document.getElementById('modal' + modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById('modal' + modalId).style.display = "none";
+        }
+
+        function addToCart(id, name, price, currency, size) {
+            cart.push({id, name, price, currency, size});
+            updateCart();
+            closeModal(id);
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - ${item.size} - ${item.price} ${item.currency}`;
+                cartItems.appendChild(li);
+            });
+        }
+
+        function checkout() {
+            if (cart.length > 0) {
+                alert('Замовлення оформлено!');
+                cart = [];
+                updateCart();
+            } else {
+                alert('Ваш кошик порожній!');
+            }
+        }
+
+        function prevSlide(modalId) {
+            // Implement carousel previous slide functionality here
+        }
+
+        function nextSlide(modalId) {
+            // Implement carousel next slide functionality here
+        }
+         function toggleCart() {
+        const cart = document.getElementById('cart');
+        cart.classList.toggle('hidden');
+    }
+    </script>
+</body>
+</html>
